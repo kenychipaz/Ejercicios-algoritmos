@@ -1,0 +1,116 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std; 
+
+
+void dibujarDado(int valor)
+{
+    if (valor == 1) 
+    {
+        cout << "+-------+" << endl;
+        cout << "|       |" << endl;
+        cout << "|   ◯   |" << endl;
+        cout << "|       |" << endl;
+        cout << "+-------+" << endl;
+    } else if (valor == 2) 
+    {
+        cout << "+-------+" << endl;
+        cout << "| ◯     |" << endl;
+        cout << "|       |" << endl;
+        cout << "|     ◯ |" << endl;
+        cout << "+-------+" << endl;
+    } else if (valor == 3) 
+    {
+        cout << "+-------+" << endl;
+        cout << "| ◯     |" << endl;
+        cout << "|   ◯   |" << endl;
+        cout << "|     ◯ |" << endl;
+        cout << "+-------+" << endl;
+    } else if (valor == 4) {
+        cout << "+-------+" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "|       |" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "+-------+" << endl;
+    } else if (valor == 5) 
+    {
+        cout << "+-------+" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "|   ◯   |" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "+-------+" << endl;
+    } else if (valor == 6) 
+    {
+        cout << "+-------+" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "| ◯   ◯ |" << endl;
+        cout << "+-------+" << endl;
+    }
+}
+
+int main ()
+{
+    srand(time(0));
+
+    char jugarOtraVez;
+
+    // Ciclo externo: controla si vuelve a jugar
+    do
+    {
+        int suma = 0;
+        char respuesta; 
+         
+        cout << " ===== Juego Limite 15 =====" << endl << endl;
+
+        // Ciclo interno: controla los lanzamientos
+        do
+        {
+            // Lanza Dado
+            int dado = (rand() % 6) + 1;
+            suma = suma + dado;
+
+            // Mostrar Dado
+            cout << "Resultado : " << endl;
+            dibujarDado(dado);
+            cout << " Dado : "            << dado << endl;
+            cout << " Suma acumulada : "  << suma << endl;
+
+            // Limite
+            if (suma > 15)
+            {
+                cout << "\nTe pasaste. Perdiste" << endl;
+                break;  // sale del ciclo interno
+            }
+
+            // Preguntar
+            cout << " Desea continuar Del juego? ( s/n ) : ";
+            cin >> respuesta;
+            cout << endl;
+
+        } while (respuesta == 's');
+
+        // Evaluar resultado 
+        if (suma <= 15)
+        {
+            if (suma >= 10 && suma <= 15)
+            {
+                cout << " Ganaste Tu Puntaje fue : " << suma << endl;
+            } else
+            {
+                cout << "Perdiste Tu puntaje fue bajo : " << suma << endl;
+            }
+        }
+
+        // Pregunta si quiere volver a jugar
+        cout << "\n¿Desea volver a jugar? ( s/n ) : ";
+        cin >> jugarOtraVez;
+        cout << endl;
+
+    } while (jugarOtraVez == 's');
+
+    cout << "Gracias por jugar. ¡Hasta luego!" << endl;
+
+    return 0;
+}
